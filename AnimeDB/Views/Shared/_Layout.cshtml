@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body ng-app="ANIMEDB">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Anime DB", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">kldjfglksdjflksdjfklasdjflkasdjflkjslkfjasdlkjf
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+
+<div class="container body-content" ng-controller="MainController as mc">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+
+<script>
+    var APPNAME = "ANIMEDB";
+</script>
+
+@*BUNDLES HERE*@
+@Scripts.Render("~/animedb/core")
+@Styles.Render("~/animedb/bootstrap")
+
+    <script>
+        (function () {
+            "use strict";
+            angular.module(APPNAME, ['vcRecaptcha']);
+        })();
+
+        (function () {
+            "use strict";
+            angular.module(APPNAME)
+                .controller("MainController", MainController);
+
+            MainController.$inject = [];
+
+            function MainController() {
+                var vm = this;
+
+                vm.Message = "Hello, this is a test!";
+            }
+
+        })();
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

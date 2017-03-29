@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="homePageController as home">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>What do you want to do?</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisici eli.</p>
+                <a href="/home/add" class="btn btn-lg btn-default">Create an Entry</a>
+                <a href="/home/search" class="btn btn-lg btn-default">Find Stuff</a>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Scripts-->
+@section Scripts {
+    <script type="text/javascript">
+
+        //service
+        (function() {
+            "use strict";
+            console.log('Homepage firing!');
+
+            angular.module(APPNAME)
+                .factory('$homePageService', $homePageService);
+
+            $homePageService.$inject = [];
+
+            function $homePageService() {
+                var string = "This is a test";
+                return string;
+            }
+        })();
+
+        //controller: displays home buttons, reveals search bar, and inputs information.
+        (function() {
+            "use strict";
+            angular.module(APPNAME)
+                .controller('homePageController', homePageController);
+
+            homePageController.$inject = ['$homePageService'];
+            function homePageController($homePageService)
+            {
+                var vm = this;
+                vm.$homePageService = $homePageService;
+
+
+            }
+        })();
+    </script>
+}

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<!--Scripts-->
+@section Scripts {
+    <script type="text/javascript">
+
+        //service
+        (function() {
+            "use strict";
+            console.log('Homepage firing!');
+
+            anguar.module(APPNAME)
+                .factory('$aboutService', $aboutService);
+
+            $aboutService.$inject = [];
+
+            function $aboutService(){}
+        })();
+
+        //controller: renders about us information and links.
+        (function() {
+            "use strict";
+            angular.module(APPNAME)
+                .controller('aboutController', aboutController);
+
+            aboutController.$inject = [];
+            function aboutController() {
+
+            }
+        })();
+    </script>
+}

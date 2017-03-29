@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="addFormController as add">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="g-recaptcha"
+                     vc-recaptcha key="'6LcK7hEUAAAAANerzMcdGy15jwO0sugJScQwzmw8'"
+                     ng-model="gRecaptchaResponse"
+                     on-success="add.getResponse(response)"
+                     on-expire="add.expire()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS BEGIN HERE-->
+@section Scripts {
+    <script type="text/javascript">
+        
+        //addFormService: ajax calls for inputting a form.
+        (function() {
+            "use strict";
+            angular.module(APPNAME)
+                .factory("$addFormService", $addFormService);
+
+            $addFormService.$inject = [];
+
+            function $addFormService() {
+                var string = "This is a test.";
+                return string;
+            }
+        })();
+
+        //addFormController: submits form and front end validation.
+
+        (function() {
+            "use strict";
+            angular.module(APPNAME)
+                .controller("addFormController", addFormController);
+
+            addFormController.$inject = [];
+
+            function addFormController( $addFormService) {
+                var vm = this;
+                //init variables
+                vm.response = null;
+                vm.$addFormService = $addFormService;
+
+                //hoisting
+
+                //inheritance
+
+                //STARTUP
+                function render() {
+                    
+                }
+
+                function _getResponse(response) {
+                    vm.response = response;
+                }
+
+                function _validateForm(isValid) {
+                    if (isValid) {
+                        _captcha();
+                        console.log("Form validation was a success.");
+                    } else {
+                        console.log("Form is invalid");
+                    }
+                }
+
+                function _captcha() {
+                    console.log("Captcha!");
+                    var postdata = {
+                    //payload here
+                    };
+                    vm.$addFormService.insertForm(data, _onSuccess, _onError);
+                }
+                
+                function _onSuccess(response) {
+                    console.log(response);
+                    console.log("Google verification succeeded!");
+                    _postForm();
+                }
+
+                function _onError(jqXHR, err) {
+                    console.log(err);
+                }
+            }
+        })();
+
+    </script>
+       
+}

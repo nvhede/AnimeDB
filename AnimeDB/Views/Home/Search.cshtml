@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="searchController as search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Search</h2>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        //service
+        (function() {
+            "use strict";
+            console.log('Search page firing!');
+
+            angular.module(APPNAME)
+                .factory('$searchService', $searchService);
+
+            $searchService.$inject = [];
+
+            function $searchService() {
+                var string = "This is a test.";
+                return string;
+            }
+        })();
+
+        //searchController: responsible for sending searches to the database. 
+        (function() {
+            "use strict";
+            angular.module(APPNAME)
+                .controller('searchController', searchController);
+
+            searchController.$inject = ['$searchService'];
+
+            function searchController($searchService) {
+                var vm = this;
+                vm.$searchService = $searchService;
+
+                //merging
+
+                //hoisting
+
+                //functions + AJAX calls
+            }
+        })();
+
+    </script>
+    }
