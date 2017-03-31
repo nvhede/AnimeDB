@@ -11,6 +11,6 @@ namespace AnimeDB.Models.Responses
 {
     public class ItemResponse<T>: SuccessResponse
     {
-        public List<T> Items { get; set; }
+        public T Item { get; set; }
     }
 }

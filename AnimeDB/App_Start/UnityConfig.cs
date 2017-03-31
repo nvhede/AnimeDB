@@ -5,6 +5,8 @@ using Unity.Mvc5;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
+using AnimeDB.Services.Interfaces;
+using AnimeDB.Classes;
 
 namespace AnimeDB
 {
@@ -26,10 +28,12 @@ namespace AnimeDB
 
             // e.g. container.RegisterType<ITestService, TestService>();
 
+            container.RegisterType<IRoleService, RoleService>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             //  this line is needed so that the resolver can be used by api controllers 
-            //config.DependencyResolver = new UnityResolver(container);
+            config.DependencyResolver = new UnityResolver(container);
 
             var resolver = new UnityDependencyResolver(container);
             //container.RegisterType<IOutputService, OutputService>();
@@ -43,7 +47,7 @@ namespace AnimeDB
             //var defaultprovider = providers.Single(i => i is ActionDescriptorFilterProvider);
             //config.Services.Remove(typeof(System.Web.Http.Filters.IFilterProvider), defaultprovider);
 
-            //config.Services.Add(typeof(System.Web.Http.Filters.IFilterProvider), new UnityActionFilterProvider(container));
+            config.Services.Add(typeof(System.Web.Http.Filters.IFilterProvider), new UnityActionFilterProvider(container));
 
         }
     }
